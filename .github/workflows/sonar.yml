@@ -10,6 +10,7 @@ env:
   SONAR_URL: https://sonarcloud.io
   SONAR_ORGANIZATION: telecominfraproject
   SONAR_PROJECT_KEY: Telecominfraproject_wlan-cloud-base
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   sonar:
