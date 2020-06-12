@@ -6,6 +6,11 @@ on:
   pull_request:
     branches: [ master ]
 
+env:
+  SONAR_URL: https://sonarcloud.io
+  SONAR_ORGANIZATION: telecominfraproject
+  SONAR_PROJECT_KEY: Telecominfraproject_wlan-cloud-base
+
 jobs:
   sonar:
     runs-on: ubuntu-latest
