@@ -41,7 +41,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      projectBaseDir: wlan-cloud-base-sonartest/base-build
+      with:
+        projectBaseDir: wlan-cloud-base-sonartest/base-build
 #     - name: Set up JDK 13
 #       uses: actions/setup-java@v1
 #       with:
