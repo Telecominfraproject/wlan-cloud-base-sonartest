@@ -36,8 +36,8 @@ jobs:
     - name: Sonar Custom Action
       uses: ./wlan-cloud-base-sonartest/.github/actions/sonar
       with:
-        project_dir: wlan-cloud-base-sonartest
-        sonar_args: cd base-build/ && mvn clean verify sonar:sonar -Dsonar.host.url=${{ env.SONAR_URL }} -Dsonar.login=${{ secrets.SONAR_LOGIN }} -Dsonar.organization=${{ env.SONAR_ORGANIZATION }} -Dsonar.projectKey=${{ env.SONAR_PROJECT_KEY }}
+        project_dir: wlan-cloud-base-sonartest/base-build/
+        sonar_args: -Dsonar.host.url=${{ env.SONAR_URL }} -Dsonar.login=${{ secrets.SONAR_LOGIN }} -Dsonar.organization=${{ env.SONAR_ORGANIZATION }} -Dsonar.projectKey=${{ env.SONAR_PROJECT_KEY }}
       #  sonar_args: -Dsonar.host.url=${{ env.SONAR_URL }} -Dsonar.login=${{ secrets.SONAR_LOGIN }} -Dsonar.organization=${{ env.SONAR_ORGANIZATION }} -Dsonar.projectKey=${{ env.SONAR_PROJECT_KEY }}
     # - name: Setup JDK
     #   run: |
