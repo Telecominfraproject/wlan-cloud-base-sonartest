@@ -1,6 +1,5 @@
 #!/bin/sh -e
 
-echo ***
 pwd
 ls -la
 echo $INPUT_PROJECT_DIR
