@@ -7,10 +7,11 @@ inputs:
 runs:
   using: docker
   image: docker://maven:3.6-openjdk-14-slim
-  entrypoint: /usr/bin/mvn
+  # entrypoint: /usr/bin/mvn
   # image: Dockerfile
   args:
-  - clean
-  - verify
-  - sonar:sonar
   - ${{ inputs.sonar_args }}
+  # - clean
+  # - verify
+  # - sonar:sonar
+  # - ${{ inputs.sonar_args }}
