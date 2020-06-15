@@ -42,10 +42,10 @@ jobs:
       run: |
         echo ${{ env.SONAR_URL }}
         whoami
+        ulimit -a
     - name: Run maven
       working-directory: wlan-cloud-base-sonartest/base-build
       run: |
-        ulimit
         pwd
         ls -la
         export PATH=$GITHUB_WORKSPACE/jdk-13/bin/:$PATH
