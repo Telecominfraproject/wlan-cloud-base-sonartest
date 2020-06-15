@@ -30,7 +30,7 @@ jobs:
     - name: test
       run: |
         pwd
-        find ./.github/actions/sonar
+        ls -la
     - name: Sonar Custom Action
       uses: ./.github/actions/sonar
     # - name: Setup JDK
