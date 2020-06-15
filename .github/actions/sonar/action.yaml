@@ -1,5 +1,16 @@
 name: sonar
 description: Run sonar
+inputs:
+  sonar_args:
+    description: sonar args
+    required: true
 runs:
   using: docker
-  image: Dockerfile
+  image: docker://maven:3.6-openjdk-14-slim
+  entrypoint: /usr/bin/mvn
+  # image: Dockerfile
+  args:
+  - clean
+  - verify
+  - sonar:sonar
+  - ${{ inputs.sonar_args }}
