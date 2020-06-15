@@ -49,6 +49,7 @@ jobs:
         ls -la
         export PATH=$GITHUB_WORKSPACE/jdk-13/bin/:$PATH
         echo $PATH
+        export JAVA_HOME=$GITHUB_WORKSPACE/jdk-13
         java -version
         mvn -version
         mvn clean verify sonar:sonar -Djvm.options=-Xmso12m -Dsonar.host.url=${{ env.SONAR_URL }} -Dsonar.login=${{ secrets.SONAR_LOGIN }} -Dsonar.organization=${{ env.SONAR_ORGANIZATION }} -Dsonar.projectKey=${{ env.SONAR_PROJECT_KEY }}
