@@ -20,11 +20,13 @@ jobs:
       uses: actions/checkout@v2
       with:
         path: wlan-cloud-base-sonartest
+        fetch-depth: 0
     - name: Checkout dependency Telecominfraproject/wlan-cloud-root
       uses: actions/checkout@v2
       with:
         repository: Telecominfraproject/wlan-cloud-root
         path: wlan-cloud-root
+        fetch-depth: 0
     - name: Setup JDK
       run: |
         curl -LO https://github.com/AdoptOpenJDK/openjdk13-binaries/releases/download/jdk-13.0.2%2B8/OpenJDK13U-jdk_x64_linux_hotspot_13.0.2_8.tar.gz
@@ -34,26 +36,32 @@ jobs:
         ls -la
         printenv
         mv jdk-13.0.2+8 jdk-13
+    - name: SonarCloud Scan
+      uses: sonarsource/sonarcloud-github-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      projectBaseDir: wlan-cloud-base-sonartest/base-build
 #     - name: Set up JDK 13
 #       uses: actions/setup-java@v1
 #       with:
 #         java-version: 13
-    - name: test
-      run: |
-        echo ${{ env.SONAR_URL }}
-        whoami
-        ulimit -a
-    - name: Run maven
-      working-directory: wlan-cloud-base-sonartest/base-build
-      run: |
-        pwd
-        ls -la
-        export PATH=$GITHUB_WORKSPACE/jdk-13/bin/:$PATH
-        echo $PATH
-        export JAVA_HOME=$GITHUB_WORKSPACE/jdk-13
-        java -version
-        echo "****"
-        java -Xss1m -XX:+PrintFlagsFinal -version
-        echo "****"
-        mvn -version
-        mvn clean verify sonar:sonar -Djvm.options=-Xss1m -Dsonar.host.url=${{ env.SONAR_URL }} -Dsonar.login=${{ secrets.SONAR_LOGIN }} -Dsonar.organization=${{ env.SONAR_ORGANIZATION }} -Dsonar.projectKey=${{ env.SONAR_PROJECT_KEY }}
+    # - name: test
+    #   run: |
+    #     echo ${{ env.SONAR_URL }}
+    #     whoami
+    #     ulimit -a
+    # - name: Run maven
+    #   working-directory: wlan-cloud-base-sonartest/base-build
+    #   run: |
+    #     pwd
+    #     ls -la
+    #     export PATH=$GITHUB_WORKSPACE/jdk-13/bin/:$PATH
+    #     echo $PATH
+    #     export JAVA_HOME=$GITHUB_WORKSPACE/jdk-13
+    #     java -version
+    #     echo "****"
+    #     java -Xss1m -XX:+PrintFlagsFinal -version
+    #     echo "****"
+    #     mvn -version
+    #     mvn clean verify sonar:sonar -Djvm.options=-Xss1m -Dsonar.host.url=${{ env.SONAR_URL }} -Dsonar.login=${{ secrets.SONAR_LOGIN }} -Dsonar.organization=${{ env.SONAR_ORGANIZATION }} -Dsonar.projectKey=${{ env.SONAR_PROJECT_KEY }}
