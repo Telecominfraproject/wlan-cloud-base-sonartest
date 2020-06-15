@@ -30,7 +30,9 @@ jobs:
     - name: test
       run: |
         pwd
-        ls -la
+        printenv
+        ls -la wlan-cloud-base-sonartest
+        find wlan-cloud-base-sonartest
     - name: Sonar Custom Action
       uses: ./.github/actions/sonar
     # - name: Setup JDK
