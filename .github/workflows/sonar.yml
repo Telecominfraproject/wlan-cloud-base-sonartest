@@ -27,8 +27,12 @@ jobs:
         repository: Telecominfraproject/wlan-cloud-root
         path: wlan-cloud-root
         fetch-depth: 0
+    - name: test
+      run: |
+        pwd
+        find ./.github/actions/sonar
     - name: Sonar Custom Action
-      uses: ./
+      uses: ./.github/actions/sonar
     # - name: Setup JDK
     #   run: |
     #     curl -LO https://github.com/AdoptOpenJDK/openjdk13-binaries/releases/download/jdk-13.0.2%2B8/OpenJDK13U-jdk_x64_linux_hotspot_13.0.2_8.tar.gz
