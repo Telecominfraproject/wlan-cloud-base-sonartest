@@ -8,6 +8,7 @@ runs:
   using: docker
   image: docker://maven:3.6-openjdk-14-slim
   # entrypoint: /usr/bin/mvn
+  entrypoint: ""
   # image: Dockerfile
   args:
   - ${{ inputs.sonar_args }}
