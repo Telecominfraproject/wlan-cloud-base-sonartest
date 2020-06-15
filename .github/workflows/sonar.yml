@@ -28,7 +28,9 @@ jobs:
       with:
         java-version: 13
     - name: test
-      run: echo ${{ env.SONAR_URL }}
+      run: |
+        echo ${{ env.SONAR_URL }}
+        whoami
     - name: Run maven
       working-directory: wlan-cloud-base-sonartest/base-build
-      run: pwd; ls -la; mvn clean verify sonar:sonar -Djvm.options=-Xss24m -Dsonar.host.url=${{ env.SONAR_URL }} -Dsonar.login=${{ secrets.SONAR_LOGIN }} -Dsonar.organization=${{ env.SONAR_ORGANIZATION }} -Dsonar.projectKey=${{ env.SONAR_PROJECT_KEY }}
+      run: pwd; ls -la; mvn clean verify sonar:sonar -Djvm.options=-Xss48m -Dsonar.host.url=${{ env.SONAR_URL }} -Dsonar.login=${{ secrets.SONAR_LOGIN }} -Dsonar.organization=${{ env.SONAR_ORGANIZATION }} -Dsonar.projectKey=${{ env.SONAR_PROJECT_KEY }}
