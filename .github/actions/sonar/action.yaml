@@ -4,14 +4,17 @@ inputs:
   sonar_args:
     description: sonar args
     required: true
+  project_dir:
+    description: project dir
+    required: true
 runs:
   using: docker
-  image: docker://maven:3.6-openjdk-14-slim
+  # image: docker://maven:3.6-openjdk-14-slim
   # entrypoint: /usr/bin/mvn
-  entrypoint: ""
-  # image: Dockerfile
-  args:
-  - ${{ inputs.sonar_args }}
+  image: Dockerfile
+  # args:
+  
+  # - ${{ inputs.sonar_args }}
   # - clean
   # - verify
   # - sonar:sonar
