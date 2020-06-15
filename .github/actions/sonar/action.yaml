@@ -1,0 +1,5 @@
+name: sonar
+description: Run sonar
+runs:
+  using: docker
+  image: Dockerfile
