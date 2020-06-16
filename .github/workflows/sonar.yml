@@ -34,4 +34,5 @@ jobs:
       uses: ./wlan-cloud-base-sonartest/.github/actions/sonar
       with:
         project_dir: wlan-cloud-base-sonartest/base-build/
+        maven_opts: -Xmx3g
         sonar_args: -Dsonar.host.url=${{ env.SONAR_URL }} -Dsonar.login=${{ secrets.SONAR_LOGIN }} -Dsonar.organization=${{ env.SONAR_ORGANIZATION }} -Dsonar.projectKey=${{ env.SONAR_PROJECT_KEY }}
