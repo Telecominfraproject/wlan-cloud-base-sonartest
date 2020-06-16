@@ -11,6 +11,7 @@ env:
   SONAR_ORGANIZATION: telecominfraproject
   SONAR_PROJECT_KEY: wlan-cloud-base-sonartest
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  MAVEN_OPTS: -Xmx3g
 
 jobs:
   sonar:
@@ -27,9 +28,18 @@ jobs:
         repository: Telecominfraproject/wlan-cloud-root
         path: wlan-cloud-root
         fetch-depth: 0
-    - name: Sonar Analysis
-      uses: ./wlan-cloud-base-sonartest/.github/actions/sonar
+    - name: Install JDK
+      uses: actions/setup-java@v1
       with:
-        project_dir: wlan-cloud-base-sonartest/base-build/
-        maven_opts: -Xmx3g
-        sonar_args: -Dsonar.host.url=${{ env.SONAR_URL }} -Dsonar.login=${{ secrets.SONAR_LOGIN }} -Dsonar.organization=${{ env.SONAR_ORGANIZATION }} -Dsonar.projectKey=${{ env.SONAR_PROJECT_KEY }}
+        java-version: 14
+        java-package: jdk
+        architecture: x64
+    - name: Run sonar
+      run: |
+        mvn clean verify sonar:sonar -Dsonar.host.url=${{ env.SONAR_URL }} -Dsonar.login=${{ secrets.SONAR_LOGIN }} -Dsonar.organization=${{ env.SONAR_ORGANIZATION }} -Dsonar.projectKey=${{ env.SONAR_PROJECT_KEY }}
+    # - name: Sonar Analysis
+    #   uses: ./wlan-cloud-base-sonartest/.github/actions/sonar
+    #   with:
+    #     project_dir: wlan-cloud-base-sonartest/base-build/
+    #     maven_opts: -Xmx3g
+    #     sonar_args: -Dsonar.host.url=${{ env.SONAR_URL }} -Dsonar.login=${{ secrets.SONAR_LOGIN }} -Dsonar.organization=${{ env.SONAR_ORGANIZATION }} -Dsonar.projectKey=${{ env.SONAR_PROJECT_KEY }}
