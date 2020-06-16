@@ -27,9 +27,6 @@ jobs:
         repository: Telecominfraproject/wlan-cloud-root
         path: wlan-cloud-root
         fetch-depth: 0
-    - name: test
-      run: |
-        free -m
     - name: Sonar Analysis
       uses: ./wlan-cloud-base-sonartest/.github/actions/sonar
       with:
