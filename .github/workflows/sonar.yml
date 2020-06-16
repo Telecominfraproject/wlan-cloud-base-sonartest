@@ -9,7 +9,8 @@ env:
   SONAR_ORGANIZATION: telecominfraproject
   SONAR_PROJECT_KEY: wlan-cloud-base-sonartest
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  MAVEN_OPTS: -Xmx4g -Xss4096 # prevents java.lang.StackOverflowError
+  MAVEN_OPTS: -Xss4096 # prevents java.lang.StackOverflowError
+  # MAVEN_OPTS: -Xmx4g -Xss4096 # prevents java.lang.StackOverflowError
 
 jobs:
   sonar:
