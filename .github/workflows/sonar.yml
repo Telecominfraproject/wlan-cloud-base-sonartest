@@ -35,6 +35,7 @@ jobs:
         java-package: jdk
         architecture: x64
     - name: Run sonar
+      working-directory: wlan-cloud-base-sonartest/base-build
       run: |
         mvn clean verify sonar:sonar -Dsonar.host.url=${{ env.SONAR_URL }} -Dsonar.login=${{ secrets.SONAR_LOGIN }} -Dsonar.organization=${{ env.SONAR_ORGANIZATION }} -Dsonar.projectKey=${{ env.SONAR_PROJECT_KEY }}
     # - name: Sonar Analysis
