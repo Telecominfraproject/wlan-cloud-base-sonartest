@@ -30,5 +30,45 @@ jobs:
     - name: Sonar Analysis
       uses: ./wlan-cloud-base-sonartest/.github/actions/sonar
       with:
-        project_dir: wlan-cloud-base-sonartest/base-build/
-        sonar_args: -Dsonar.host.url=${{ env.SONAR_URL }} -Dsonar.login=${{ secrets.SONAR_LOGIN }} -Dsonar.organization=${{ env.SONAR_ORGANIZATION }} -Dsonar.projectKey=${{ env.SONAR_PROJECT_KEY }}
+        project_dir: wlan-cloud-base-sonartest
+        sonar_args: cd base-build/ && mvn clean verify sonar:sonar -Dsonar.host.url=${{ env.SONAR_URL }} -Dsonar.login=${{ secrets.SONAR_LOGIN }} -Dsonar.organization=${{ env.SONAR_ORGANIZATION }} -Dsonar.projectKey=${{ env.SONAR_PROJECT_KEY }}
+      #  sonar_args: -Dsonar.host.url=${{ env.SONAR_URL }} -Dsonar.login=${{ secrets.SONAR_LOGIN }} -Dsonar.organization=${{ env.SONAR_ORGANIZATION }} -Dsonar.projectKey=${{ env.SONAR_PROJECT_KEY }}
+    # - name: Setup JDK
+    #   run: |
+    #     curl -LO https://github.com/AdoptOpenJDK/openjdk13-binaries/releases/download/jdk-13.0.2%2B8/OpenJDK13U-jdk_x64_linux_hotspot_13.0.2_8.tar.gz
+    #     tar xf OpenJDK13U-jdk_x64_linux_hotspot_13.0.2_8.tar.gz
+    #     rm -f OpenJDK13U-jdk_x64_linux_hotspot_13.0.2_8.tar.gz
+    #     pwd
+    #     ls -la
+    #     printenv
+    #     mv jdk-13.0.2+8 jdk-13
+    # - name: SonarCloud Scan
+    #   uses: sonarsource/sonarcloud-github-action@master
+    #   env:
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #     SONAR_TOKEN: ${{ secrets.SONAR_LOGIN }}
+    #   with:
+    #     projectBaseDir: wlan-cloud-base-sonartest/
+#     - name: Set up JDK 13
+#       uses: actions/setup-java@v1
+#       with:
+#         java-version: 13
+    # - name: test
+    #   run: |
+    #     echo ${{ env.SONAR_URL }}
+    #     whoami
+    #     ulimit -a
+    # - name: Run maven
+    #   working-directory: wlan-cloud-base-sonartest/base-build
+    #   run: |
+    #     pwd
+    #     ls -la
+    #     export PATH=$GITHUB_WORKSPACE/jdk-13/bin/:$PATH
+    #     echo $PATH
+    #     export JAVA_HOME=$GITHUB_WORKSPACE/jdk-13
+    #     java -version
+    #     echo "****"
+    #     java -Xss1m -XX:+PrintFlagsFinal -version
+    #     echo "****"
+    #     mvn -version
+    #     mvn clean verify sonar:sonar -Djvm.options=-Xss1m -Dsonar.host.url=${{ env.SONAR_URL }} -Dsonar.login=${{ secrets.SONAR_LOGIN }} -Dsonar.organization=${{ env.SONAR_ORGANIZATION }} -Dsonar.projectKey=${{ env.SONAR_PROJECT_KEY }}
