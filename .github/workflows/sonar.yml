@@ -10,7 +10,7 @@ env:
   SONAR_PROJECT_KEY: wlan-cloud-base-sonartest
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   MAVEN_OPTS: -Xmx4g # prevents java.lang.StackOverflowError
-
+#
 jobs:
   sonar:
     runs-on: ubuntu-20.04 # prevents java.lang.StackOverflowError
