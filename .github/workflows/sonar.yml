@@ -11,11 +11,11 @@ env:
   SONAR_ORGANIZATION: telecominfraproject
   SONAR_PROJECT_KEY: wlan-cloud-base-sonartest
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  MAVEN_OPTS: -Xmx3g # prevents java.lang.StackOverflowError
+  # MAVEN_OPTS: -Xmx3g # prevents java.lang.StackOverflowError
 
 jobs:
   sonar:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-20.04 # prevents java.lang.StackOverflowError
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
